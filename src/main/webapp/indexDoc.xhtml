@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<head>
+		<link rel="stylesheet" href="includes/css/scrollNav.css" type="text/css"></link>
+		<link href="includes/css/frames.css" type="text/css" rel="stylesheet"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="includes/js/ajax.js"></script>
+		<script type="text/javascript" src="includes/js/welcomePage.js"></script>
+	</head>
+	<body>
+	  <ul style="padding-left: 10px;">
+		<li><a href="#overview">Overview</a></li>
+		<li><a href="#configuration">JSF server configuration</a></li>
+		<li><a href="#download">Download jar file</a></li>
+		<li><a href="#top">Top</a></li>
+	  </ul>
+	  <br/>
+	  #{healthCheckBean.initApplicationList("init")}
+	  <div id="overview" style="padding:15px;width:55%;">
+		<h3>Overview</h3><br/>
+		HTML pages Timestamps graphic representations requested to a JSF servlet in a tomcat app server. 
+		The image below gives a picture of all the pages requested to a given URL . The root page will display a bar for every page that has been requested for the URL
+		<br/><br/>
+		<img src="includes/images/root.png"/>
+	  </div>
+	  <div id="configuration" style="padding:15px;width:55%;">
+		<h3>JSF server configuration</h3>
+		<h4>Set environmental variable:</h4>
+		<div  style="padding:15px;">
+		Set(export) LBHANDSHAKE=http://ourfamilycontacts.com/loadbalancer/loadinstance/includes/js/lbhandshake.js<br/>
+		Test:<br/>
+		Set(export) LBHANDSHAKE=http://10.0.0.246:8080/loadbalancer/loadinstance/includes/js/lbhandshake.js<br/>
+		</div>
+		<div  style="padding:15px;">
+		  <h3>faces-config.xml</h3>
+			&#60;lifecycle&#62;<br/>
+			<div  style="padding-left:15px;">
+				&#60;phase-listener&#62;com.assoc.jad.loadbalancer.lbinstance.LifeCycleListener&#60;/phase-listener&#62;<br/>
+			</div>
+			&#60;/lifecycle&#62;
+		  </div>
+		<div  style="padding-left:15px;">
+		  <h3>Web.xml</h3>
+		  &#60;filter&#62;<br/>
+		<div  style="padding-left:15px;">
+			&#60;filter-name&#62;jsftrace filter&#60;/filter-name&#62;<br/>
+			&#60;filter-class&#62;com.assoc.jad.loadbalancer.lbinstance.LoadBalancerFilter&#60;/filter-class&#62;<br/>
+		</div>
+		  &#60;/filter&#62;<br/>
+		  &#60;filter-mapping&#62;<br/>
+		  <div  style="padding-left:15px;">
+			&#60;filter-name&#62;jsftrace filter&#60;/filter-name&#62;<br/>
+			&#60;servlet-name&#62;Faces Servlet&#60;/servlet-name&#62;<br/>
+			&#60;url-pattern&#62;/*&#60;/url-pattern&#62;<br/>
+		  </div>
+		  &#60;/filter-mapping&#62;<br/>
+		</div>
+		<div  style="padding:15px;">
+		   <h3>JVM:</h3>
+		   --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED<br/>
+		</div>
+		<div  id="download" style="padding:15px;">
+		  <h3>Download jar file</h3>
+		  click  <a href="javascript:downloadJar()">here</a>  download jar-file and add it to your lib-directory.
+		  <h3>INCLUDE SIMPLE JSON IN POM</h3>
+		  <br/>
+		</div>
+	  </div>
+	</body>
+</html>

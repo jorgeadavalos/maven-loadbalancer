@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+ 	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets" >
+<head> 
+		<link rel="stylesheet" href="includes/css/scrollNav.css" type="text/css"></link>
+		<link href="includes/css/frames.css" type="text/css" rel="stylesheet"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="includes/js/ajax.js"></script>
+		<script type="text/javascript" src="includes/js/welcomePage.js"></script>
+</head>  
+	<body onload="fadeIn();bldMenu('ulmenu','#{healthCheckBean.applications}')">
+	<h:form id="healthCheck" styleClass="menuCol noborder">
+		<ui:include src="mainNavigation.xhtml" />
+		<div id="contentframe" class="center">
+		<h3>performance data for application #{healthCheckBean.selectedApp}</h3>
+		<h4 id="infoMessage" style="">#{healthCheckBean.infomsg}</h4>
+		
+		<h:panelGrid columns="2" cellpadding="1" >		
+			<h:outputLabel for="application" value="Application" />
+			<h:selectOneMenu value="#{healthCheckBean.selectedApp}" id="application" immediate="true" onchange="this.form.submit()">
+				<f:selectItem itemLabel="Select an application" itemValue="" />
+				<f:selectItems value="#{healthCheckBean.applicationList}" /> 
+			</h:selectOneMenu>
+		</h:panelGrid>
+		<br/><h3>General Server Data</h3>
+			<c:forEach items="#{healthCheckBean.performanceService}" var="entry">
+			<tr>
+			<td><h:outputText value="#{entry.key}"/></td>
+			  <c:forEach end="0" items="#{entry.value}" var="nestedentry1">   //display only one element from hash map
+				<td><h:outputText value="#{nestedentry1.key}" /></td>
+				  <table border="2" name="perfData">
+					<c:forEach items="#{nestedentry1.value}" var="nestedentry2">
+					  <tr>
+						<c:set var="key" value="#{nestedentry2.key}"/>
+						<c:if test="${key == 'schema' || key == 'instance' || key == 'serverName' || key == 'totalSwapSpaceSize' || key == 'instancePort' || key == 'loadBalancerWSURL' ||key == 'totalPhysicalMemorySize' || key == 'viewId'}">
+						  <th><h:outputText value="#{nestedentry2.key}" /></th>
+						  <td><h:outputText value="#{nestedentry2.value.get(0)}"/></td>    
+						</c:if>
+					  </tr>
+					</c:forEach>
+				  </table>
+			  </c:forEach>
+			</tr>
+			</c:forEach>
+			<c:forEach items="#{healthCheckBean.performanceService}" var="entry">
+
+			<br/><h3>Performance Data </h3>
+			  <c:forEach items="#{entry.value}" var="nestedentry1">
+			  #{nestedentry1.key}
+			  <table border="2" name="perfData">
+				<tr><th>name</th><th>average</th><th>minimum</th><th>maximum</th></tr>
+				<c:forEach items="#{nestedentry1.value}" var="nestedentry2">
+					<c:set var="key" value="#{nestedentry2.key}"/>
+					<c:set var="total" value="${0}"/>
+					<c:set var="counter" value="${0}"/>
+					<c:set var="min" value="${0}"/>
+					<c:set var="max" value="${0}"/>
+					<c:set var="flag" value="${0}"/>
+
+					<c:if test="${key == 'freePhysicalMemorySize' || key == 'processTime' || key == 'freeSwapSpaceSize' || key == 'committedVirtualMemorySize' || key == 'processCpuLoad' || 
+						key == 'systemCpuLoad' || key == 'processCpuTime' || key == 'networkBgnTime' || key == 'networkEndTime'}">
+					  <tr><th><h:outputText value="#{nestedentry2.key}" /></th>
+					  <c:forEach items="#{nestedentry2.value}" var="listValues">
+						<c:set var="total" value="${total + listValues}" />
+						<c:set var="counter" value="${counter + 1}" />
+						<c:if test="${flag == 0}" >
+						  <c:set var="min" value="${listValues}"/>
+						  <c:set var="max" value="${listValues}"/>
+						  <c:set var="flag" value="${1}"/>
+						</c:if>
+						<c:if test="${min - listValues gt 0.0}" >
+						  <c:set var="min" value="${listValues}"/>
+						</c:if>
+						<c:if test="${max - listValues lt 0.0}" >
+						  <c:set var="max" value="${listValues}"/>
+						</c:if>
+					  </c:forEach>
+					  <td>${total/counter}</td><td>${min}</td><td>${max}</td>
+					  </tr>
+					</c:if>
+				</c:forEach>
+			  </table>
+			  </c:forEach>
+			</c:forEach>
+		</div>
+  		<input type="hidden" value="healthCheck" id="formname" name="formname"/>
+</h:form>
+  </body>
+</html>

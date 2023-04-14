@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+<h:head> 
+		<link rel="stylesheet" href="includes/css/scrollNav.css" type="text/css"></link>
+		<link href="includes/css/frames.css" type="text/css" rel="stylesheet"></link>
+		<link href="includes/css/modal.css" type="text/css" rel="stylesheet"></link>
+		<script type="text/javascript" src="includes/js/ajax.js"></script>
+		<script type="text/javascript" src="includes/js/welcomePage.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</h:head>  
+<body onload="fadeIn();bldMenu('ulmenu','#{healthCheckBean.applications}')">
+  <h:form id="healthCheck" styleClass="menuCol noborder">
+		<ui:include src="mainNavigation.xhtml" />
+		<div id="contentframe" class="center">
+		<h2>display instances availability by application</h2>
+
+		<h4 id="infoMessage" style="">#{healthCheckBean.infomsg}</h4>
+		<h:selectOneMenu value="#{healthCheckBean.selectedApp}" id="application" immediate="true" onchange="this.form.submit()">
+			<f:selectItem itemLabel="Select an application" itemValue="" />
+			<f:selectItems value="#{healthCheckBean.applicationList}" /> 
+		</h:selectOneMenu>
+		<h:dataTable id="tblInstances" border="2" value="#{healthCheckBean.applicationService}" var="appKey" >
+			<h:column>
+				<f:facet name = "header">Data</f:facet>  
+				<a href="javascript:instanceData('#{appKey}')" style="color:black;">Display Data</a>
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Graph</f:facet>  
+				<a href="javascript:instanceDataGraph('#{appKey}')" style="color:black;">Graph Data</a>
+			</h:column>
+			<h:column>
+				<f:facet name = "header">URL</f:facet>  
+				<h:outputText value="#{appKey}" />
+			</h:column>
+			<h:column>
+					<f:facet name = "header">record</f:facet>  
+				<h:dataTable value="#{healthCheckBean.service2}" var="serv">
+					<h:column>
+					<h:outputText  value="#{serv.get(appKey)}" />
+					</h:column>
+				</h:dataTable>
+			</h:column>
+		</h:dataTable>		
+		</div>
+  		<input type="hidden" value="healthCheck" id="formname" name="formname"/>
+  </h:form>
+</body>
+</html>

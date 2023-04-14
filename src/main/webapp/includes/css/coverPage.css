@@ -1,0 +1,99 @@
+.oval-thought-left {
+  position:relative;
+  width:279px;
+  padding:10px 18px;
+  margin:1em auto 80px;
+  text-align:center;
+  color:#fff;
+  background:#075698;
+  border-radius:220px / 120px;
+}
+/* creates the larger circle */
+.oval-thought-left:before {
+  content:"";
+  position:absolute;
+  bottom:-20px;
+  left:50px;
+  width:30px;
+  height:30px;
+  background:#075698;
+  border-radius:30px;
+}
+
+/* creates the smaller circle */
+.oval-thought-left:after {
+  content:"";
+  position:absolute;
+  bottom:-30px;
+  left:30px;
+  width:15px;
+  height:15px;
+  background:#075698;
+  border-radius:15px;
+}
+.oval-thought-right {
+  position:relative;
+  width:300px;
+  height:100px;
+  padding:10px 1px;
+  text-align:center;
+  color:#333;
+  background:#ccf;
+  border-radius:128px / 132px;
+  top:-20px;
+  left:200px;
+}
+/* creates the larger circle */
+.oval-thought-right:before {
+  content:"";
+  position:absolute;
+  bottom:-20px;
+  left:350px;
+  width:30px;
+  height:30px;
+  background:#075698;
+  border-radius:30px;
+}
+
+/* creates the smaller circle */
+.oval-thought-right:after {
+  content:"";
+  position:absolute;
+  bottom:-37px;
+  left:345px;
+  width:15px;
+  height:15px;
+  background:#075698;
+  border-radius:15px;
+}
+.oval-thought-floater-left {
+  content:"";
+  position:absolute;
+  bottom:-49px;
+  right:300px;
+  width:10px;
+  height:10px;
+  background:#075698;
+  border-radius:15px;
+}
+.oval-image{
+  position:relative;
+  width:200px;
+  border:0px solid #c81e2b;
+  text-align:center;
+  color:#333;
+  background:#fff;
+  border-radius:128px / 132px;
+}
+.oval-image2{
+  position:relative;
+  width:130px;
+  border:0px solid #c81e2b;
+  text-align:center;
+  color:#333;
+  background:#fff;
+  border-radius:128px / 132px;
+  left:430px;
+  top:20px;
+}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<link rel="stylesheet" href="includes/css/scrollNav.css" type="text/css"></link>
+<link rel="stylesheet" href="includes/css/style.css" type="text/css"></link>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="includes/js/shoplist.js"></script>
+<script type="text/javascript" src="includes/js/shoplistSupport.js"></script>
+<script type="text/javascript" src="includes/js/ajax.js"></script>
+</head>
+<body onload="showNav('mainNavigation.xhtml')">
+<h:form id="healthCheck" styleClass="menuCol noborder">
+	<div id="contentframe" class="center">
+		<h2>To add a new shopping Item to Stores</h2>
+
+		<h4 id="infoMessage" style="">#{healthCheckBean.infomsg}</h4>
+		<h:selectOneMenu value="#{healthCheckBean.selectedApp}" id="application" immediate="true" onchange="this.form.submit()">
+			<f:selectItem itemLabel="Select an application" itemValue="" />
+			<f:selectItems value="#{healthCheckBean.applicationList}" /> 
+		</h:selectOneMenu>
+			<h:dataTable border="2" value="#{healthCheckBean.applicationService}" var="appKey" >
+				<h:column><h:outputText value="#{appKey}" />
+				</h:column>
+				<h:column>
+					<h:dataTable value="#{healthCheckBean.service2}" var="serv">
+						<h:column>
+						<f:facet name = "header">#{serv.key.get('instance')}</f:facet>  
+						<h:outputText  value="#{serv.get(appKey)}" />
+						</h:column>
+					</h:dataTable>
+				</h:column>
+			</h:dataTable>		
+		<h:dataTable border="2" value="#{healthCheckBean.service}" var="serv">
+			<h:column>
+			<f:facet name = "header">#{serv.key.get('instance')}</f:facet>  
+			<h:outputText  value="#{serv}" />
+			</h:column>
+		</h:dataTable>
+
+	</div>
+</h:form>
+</body>
+</html>

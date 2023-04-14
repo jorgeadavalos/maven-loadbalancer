@@ -1,0 +1,23 @@
+#contentframe {
+		margin: 40px 0px 10px 200px;
+		display: block;
+		padding: 10px;
+		height: 100%;
+}
+#tableHome {
+		margin: 1px 0px 3px 2px;
+		display: block;
+		padding: 10px;
+}
+#navigationframe {
+		display: block;
+		top: 0px;
+		left: 2px;
+		width: 13%;
+		height: 100%;
+		position: fixed;
+		/*border: 1px solid #888;*/
+}
+.displaytbl tr:hover {
+    background-color: yellow;
+}

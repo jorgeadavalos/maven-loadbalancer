@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns="http://www.w3.org/1999/xhtml">
+	  
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>bar graph</title>
+</h:head> 
+<body>
+	<h:form id="barGraph">
+	<div id="contentframe" class="multiselect center"> 
+	  <p:chart type="line" model="#{barGraphBean.lineModel1}" style="height:300px;"/>
+	  <br /><br />
+	  <p:chart type="line" model="#{barGraphBean.lineModel2}" style="height:300px;"/>
+	</div>
+	</h:form>
+</body>
+</html>

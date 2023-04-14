@@ -1,0 +1,100 @@
+.restoreBean-table{
+	border-collapse:collapse;
+}
+
+.restoreBean-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.restoreBean-table-odd-row{
+	text-align:left;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.restoreBean-table-even-row{
+	text-align:left;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+/**/
+        body {
+                margin: 0;
+                padding: 0 10px 0 10px;
+                height: 100%;
+                overflow-y: auto;
+        }
+table  {
+	font-family: Arial, Helvetica;
+	font-size: 12px; 
+    border: 1px solid black;
+	table-layout:fixed;
+	width:100%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+        #contentframe {
+                margin: 110px 0px 10px 250px;
+                display: block;
+                padding: 10px;
+       }
+        #tableHome {
+                margin: 1px 0px 3px 2px;
+                display: block;
+                padding: 10px;
+       }
+
+        #headerframe {
+                display: block;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 19%;
+                position: fixed;
+                background-color: #ffffff;
+                border: 0px solid #888;
+        }
+
+        #navigationframe {
+                display: block;
+                top: 113px;
+                left: 0px;
+                width: 20%;
+                height: 80%;
+                position: fixed;
+                border: 1px solid #888;
+				overflow: scroll;
+        }
+
+        * html #header {position: absolute;}
+        * html #navigation {position: absolute;}
+td:hover {
+	overflow: visible;
+	position: relative;
+	background-color: red;
+	width:20px;
+}
+.hide-header {
+	display: none;
+}
+.hide-column {
+	display: none;
+}
+.contentbutton {
+    background-color: #000050;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
